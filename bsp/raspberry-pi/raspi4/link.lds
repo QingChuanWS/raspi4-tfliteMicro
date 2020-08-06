@@ -61,7 +61,32 @@ SECTIONS
 
         . = ALIGN(16);
         _etext = .;
+
+        /* in your .text section */
+        PROVIDE(__ctors_start__ = .);
+        /* old GCC version uses .ctors */
+        KEEP(*(SORT(.ctors.*)))
+        KEEP(*(.ctors))
+        /* new GCC version uses .init_array */
+        KEEP (*(SORT(.init_array.*)))
+        KEEP (*(.init_array))
+        PROVIDE(__ctors_end__ = .);
+
+        . = ALIGN(4);
     }
+
+    /* The .ARM.exidx section is used for C++ exception handling. */
+    /* .ARM.exidx is sorted, so has to go in its own output section.  */
+    __exidx_start = .;
+    ARM.exidx :
+    {
+        *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+
+        /* This is used by the startup in order to initialize the .data secion */
+        _sidata = .;
+    }
+    __exidx_end = .;
+
 
     .eh_frame_hdr :
     {
@@ -73,17 +98,27 @@ SECTIONS
     . = ALIGN(16);
     .data :
     {
-     *(.data)
-     *(.data.*)
+        *(.data)
+        *(.data.*)
 
-     *(.data1)
-     *(.data1.*)
+        *(.data1)
+        *(.data1.*)
 
-     . = ALIGN(16);
-     _gp = ABSOLUTE(.);     /* Base of small data */
+        . = ALIGN(16);
+        _gp = ABSOLUTE(.);     /* Base of small data */
 
-     *(.sdata)
-     *(.sdata.*)
+        *(.sdata)
+        *(.sdata.*)
+
+        /* .data section which is used for initialized data */
+
+        /* in your .data section */
+        PROVIDE(__dtors_start__ = .);
+        KEEP(*(SORT(.dtors.*)))
+        KEEP(*(.dtors))
+        PROVIDE(__dtors_end__ = .);
+
+        . = ALIGN(4);
     }
 
     . = ALIGN(16);
