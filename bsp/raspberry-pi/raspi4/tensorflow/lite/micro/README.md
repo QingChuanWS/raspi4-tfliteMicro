@@ -2,7 +2,7 @@
 
 - 根据`micro`的依赖情况, 整理出了一个隔离操作系统的`micro`文件夹, 目前`micro`工程已经通过所有官方测试用例,  并可以可以在提供`main`函数时成功编译.
 - 目前的版本中并不存在多个测试文件. 
-- 目前工程执行的是`examples/micro_speech/micro_features` 中的`micro_features_generator_test.cc` 中的测试`main`函数, 实现一个特征生成的测试用例. 编译运行并装载到树莓派板子之后, 可以看到输出`ALL TEST PASSED` 的字样.
+- 目前工程执行的是`examples/micro_speech/` 中的`main.cc` 中的`main`函数, 工程实现了官方在带模型的读入. 编译运行并装载到树莓派板子之后, 可以看到输出`model load successfully!! `的字样.
 - `examples` 文件夹中包含了所有官方自带测试用例, 目前只有`micro_speech`语音用例
 
 ## 通过的测试用例包括
@@ -10,11 +10,11 @@
 - `micro` 主目录测试 -- 全部通过测试
   - `memory_helpers_test.cc `
 
-  - `micro_allocator_test.cc`  ` (z->z_magic == ZALLOC_SLAB_MAGIC) assertion failed at function:rt_free, line number:828` 
+  - `micro_allocator_test.cc` 
 
   - `micro_error_reporter_test.cc` 
 
-  - `micro_interpreter_test.cc`  `(z->z_magic == ZALLOC_SLAB_MAGIC) assertion failed at function:rt_free, line number:828` 
+  - `micro_interpreter_test.cc` 
 
   - `micro_mutable_op_resolver_test.cc` 
 
