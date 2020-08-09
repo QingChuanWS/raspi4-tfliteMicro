@@ -4,6 +4,7 @@ from building import *
 # The set of source files associated with this SConscript file.
 src = Split('''
 string_util.cc
+<<<<<<< HEAD
 ''') + Glob('c/*.c') + Glob('core/api/*.cc') + Glob('experimental/microfrontend/lib/*.cc') \
 + Glob('experimental/microfrontend/lib/*.c') \
 + Glob('experimental/microfrontend/lib/tools/*.c') + Glob('kernels/*.cc') + Glob('kernels/internal/*.cc') \
@@ -11,9 +12,21 @@ string_util.cc
 + Glob('micro/examples/micro_speech/*.cc') + Glob('micro/examples/micro_speech/micro_features/*.cc')  \
 + Glob('schema/builtin_ops_header/*.cc')
 
+=======
+''')
+>>>>>>> dc99fec4c7469ae769e4a1fbceca0e96dac8cde1
 cwd = GetCurrentDir()
 CPPPATH = [cwd, str(Dir('#'))]
 
 group = DefineGroup('lite', src, depend = [''], CPPPATH = CPPPATH)
 
+<<<<<<< HEAD
+=======
+list = os.listdir(cwd)
+
+for item in list:
+    if os.path.isfile(os.path.join(cwd, item, 'SConscript')):
+        group = group + SConscript(os.path.join(item, 'SConscript'))
+
+>>>>>>> dc99fec4c7469ae769e4a1fbceca0e96dac8cde1
 Return('group')

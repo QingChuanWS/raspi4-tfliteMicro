@@ -157,7 +157,10 @@
 /* samples: kernel and components samples */
 
 #define BCM2711_SOC
+<<<<<<< HEAD
 #define BSP_SUPPORT_FPU
+=======
+>>>>>>> dc99fec4c7469ae769e4a1fbceca0e96dac8cde1
 
 /* Hardware Drivers Config */
 
