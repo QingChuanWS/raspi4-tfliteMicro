@@ -16,12 +16,8 @@ recording_micro_allocator.cc
 recording_simple_memory_allocator.cc
 simple_memory_allocator.cc
 test_helpers.cc
-<<<<<<< HEAD
 ''') + Glob('kernels/*.cc') + Glob('memory_planner/*.cc') + Glob('testing/*.cc') + Glob('examples/micro_speech/*.cc') \
 + Glob('examples/micro_speech/micro_features/*.cc')  # + Glob('examples/micro_speech/simple_features/*.cc')
-=======
-''') + Glob('kernels/*.cc') + Glob('memory_planner/*.cc') + Glob('testing/*.cc')
->>>>>>> dc99fec4c7469ae769e4a1fbceca0e96dac8cde1
 
 cwd = GetCurrentDir()
 
