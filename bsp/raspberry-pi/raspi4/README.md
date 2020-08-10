@@ -6,7 +6,7 @@
 
 外设支持上，引入了双频Wi-Fi，蓝牙5.0，千兆网卡，MIPI CSI相机接口，两个USB口，40个扩展帧。
 
-这份RT-Thread BSP是针对 Raspberry Pi 4的一份移植，树莓派价格便宜, 使用者甚众，是研究和运行RT-Thread的可选平台之一。
+这份RT-Thread BSP是针对 Raspberry Pi 4的一份移植，同时本历程搭载了Tensorflow Lite Micro嵌入式深度学习框架, 可以实现官方自带的有关测试和历程
 
 
 ## 2. 编译说明
@@ -60,9 +60,11 @@ heap: 0x000c9350 - 0x040c9350
 - RT -     Thread Operating System
  / | \     4.0.3 build Apr 16 2020
  2006 - 2020 Copyright by rt-thread team
-Hi, this is RT-Thread!!
+model load successfully!!
 msh />
 ```
+
+目前工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 工程实现了官方自带模型的读入. 编译运行并装载到树莓派板子之后, 可以看到输出`model load successfully!! `的字样.
 
 ## 4. 支持情况
 
@@ -79,3 +81,4 @@ msh />
 [3]: https://downloads.raspberrypi.org/raspbian_lite_latest
 [4]: https://etcher.io
 [5]: https://github.com/BernardXiong
+[6]:https://tensorflow.google.cn/lite/microcontrollers
