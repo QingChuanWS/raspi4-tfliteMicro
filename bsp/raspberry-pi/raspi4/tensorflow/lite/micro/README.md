@@ -2,7 +2,7 @@
 
 - 根据`micro`的依赖情况, 整理出了一个隔离操作系统的`micro`文件夹, 目前`micro`工程已经通过所有官方测试用例,  并可以可以在提供`main`函数时成功编译.
 - 目前的版本中并不存在测试文件. 
-- 目前工程执行的是`examples/micro_speech/` 中的`main.cc` 中的`main`函数, 工程实现了官方自带模型的读入. 编译运行并装载到树莓派板子之后, 可以看到输出`model load successfully!! `的字样.
+- 目前工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 工程实现了官方自带模型的读入. 编译运行并装载到树莓派板子之后, 可以看到输出`model load successfully!! `的字样.
 - `examples` 文件夹中包含了所有官方自带测试用例, 目前只有`micro_speech`语音用例
 
 ## 通过的测试用例包括

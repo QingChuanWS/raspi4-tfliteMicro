@@ -1,9 +1,9 @@
 from building import *
 
 cwd     = GetCurrentDir()
-src     = Glob('*.c') + Glob('*.cpp')
+src     = Glob('*.c') + Glob('*.cc')
 CPPPATH = [cwd, str(Dir('#'))]
 
-group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+group = DefineGroup('lite', src, depend = [''], CPPPATH = CPPPATH)
 
 Return('group')
