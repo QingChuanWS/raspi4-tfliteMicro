@@ -13,17 +13,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// This data was created from the PCM data in a WAV file held in v2 of the
-// Speech Commands test dataset, at the path:
-// speech_commands_test_set_v0.02/yes/f2e59fea_nohash_1.wav
-// This should contain all 16,000 samples from the one-second file.
+// This is a standard TensorFlow Lite model file that has been converted into a
+// C data array, so it can be easily compiled into a binary for devices that
+// don't have a file system. It was created using the command:
+// xxd -i person_detect.tflite > person_detect_model_data.cc
 
-#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_YES_1000MS_SAMPLE_DATA_H_
-#define TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_YES_1000MS_SAMPLE_DATA_H_
+#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_DETECT_MODEL_DATA_H_
+#define TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_DETECT_MODEL_DATA_H_
 
-#include <cstdint>
+extern const unsigned char g_person_detect_model_data[];
+extern const int g_person_detect_model_data_len;
 
-extern const int g_yes_1000ms_sample_data_size;
-extern const int16_t g_yes_1000ms_sample_data[];
-
-#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_YES_1000MS_SAMPLE_DATA_H_
+#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_DETECT_MODEL_DATA_H_

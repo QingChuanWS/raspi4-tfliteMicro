@@ -13,20 +13,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include <rtthread.h>
-#include <rtdevice.h>
-#include <board.h>
-#include "tensorflow/lite/micro/examples/micro_speech/main_functions.h"
+// This data was created from a sample image from without a person in it.
+// Convert original image to simpler format:
+// convert -resize 96x96\! noperson.PNG noperson.bmp3
+// Skip the 54 byte bmp3 header and add the reset of the bytes to a C array:
+// xxd -s 54 -i /tmp/noperson.bmp3 > /tmp/noperson.cc
 
+#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_NO_PERSON_IMAGE_DATA_H_
+#define TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_NO_PERSON_IMAGE_DATA_H_
 
-// This is the default main used on systems that have the standard C entry
-// point. Other devices (for example FreeRTOS or ESP32) that have different
-// requirements for entry code (like an app_main function) should specialize
-// this main.cc file in a target-specific subfolder.
-int main(int argc, char* argv[]) {
-  setup();
-  rt_kprintf("model load successfully!!\n");
-  // while (true) {
-  //   loop();
-  // }
-}
+#include <cstdint>
+
+extern const int g_no_person_data_size;
+extern const uint8_t g_no_person_data[];
+
+#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_NO_PERSON_IMAGE_DATA_H_

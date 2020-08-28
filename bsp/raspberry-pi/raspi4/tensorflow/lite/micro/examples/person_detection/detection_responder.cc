@@ -13,25 +13,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_MAIN_FUNCTIONS_H_
-#define TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_MAIN_FUNCTIONS_H_
+#include "tensorflow/lite/micro/examples/person_detection/detection_responder.h"
 
-// Expose a C friendly interface for main functions.
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-// Initializes all data needed for the example. The name is important, and needs
-// to be setup() for Arduino compatibility.
-void setup();
-
-// Runs one iteration of data gathering and inference. This should be called
-// repeatedly from the application code. The name needs to be loop() for Arduino
-// compatibility.
-void loop();
-
-#ifdef __cplusplus
+// This dummy implementation writes person and no person scores to the error
+// console. Real applications will want to take some custom action instead, and
+// should implement their own versions of this function.
+void RespondToDetection(tflite::ErrorReporter* error_reporter,
+                        uint8_t person_score, uint8_t no_person_score) {
+  TF_LITE_REPORT_ERROR(error_reporter, "person score:%d no person score %d",
+                       person_score, no_person_score);
 }
-#endif
-
-#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_MAIN_FUNCTIONS_H_

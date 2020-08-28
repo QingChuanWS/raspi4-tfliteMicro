@@ -13,16 +13,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/lite/micro/examples/micro_speech/command_responder.h"
+// This data was created from a sample image from with a person in it.
+// Convert original image to simpler format:
+// convert -resize 96x96\! person.PNG person.bmp3
+// Skip the 54 byte bmp3 header and add the reset of the bytes to a C array:
+// xxd -s 54 -i /tmp/person.bmp3 > /tmp/person.cc
 
-// The default implementation writes out the name of the recognized command
-// to the error console. Real applications will want to take some custom
-// action instead, and should implement their own versions of this function.
-void RespondToCommand(tflite::ErrorReporter* error_reporter,
-                      int32_t current_time, const char* found_command,
-                      uint8_t score, bool is_new_command) {
-  if (is_new_command) {
-    TF_LITE_REPORT_ERROR(error_reporter, "Heard %s (%d) @%dms", found_command,
-                         score, current_time);
-  }
-}
+#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_IMAGE_DATA_H_
+#define TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_IMAGE_DATA_H_
+
+#include <cstdint>
+
+extern const int g_person_data_size;
+extern const uint8_t g_person_data[];
+
+#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_IMAGE_DATA_H_
