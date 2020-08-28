@@ -60,11 +60,15 @@ heap: 0x000c9350 - 0x040c9350
 - RT -     Thread Operating System
  / | \     4.0.3 build Apr 16 2020
  2006 - 2020 Copyright by rt-thread team
-model load successfully!!
-msh />
+ model load successfully!!
+ Heard yes (203) @1400ms
+ Heard yes (201) @9400ms
+ Heard yes (201) @17400ms
+ Heard yes (201) @25400ms
+ ...
 ```
 
-目前工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 工程实现了官方自带模型的读入. 编译运行并装载到树莓派板子之后, 可以看到输出`model load successfully!! `的字样.
+目前工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别简单的yes和no关键字. 编译运行并装载到树莓派板子之后, 可以看到如上图所示的输出
 ## 4. 目录结构
 
 `application`: 用于放置用户自定义实现文件

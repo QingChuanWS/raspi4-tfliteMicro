@@ -26,7 +26,7 @@ limitations under the License.
 int main(int argc, char* argv[]) {
   setup();
   rt_kprintf("model load successfully!!\n");
-  // while (true) {
-  //   loop();
-  // }
+   while (true) {
+     loop();
+   }
 }
