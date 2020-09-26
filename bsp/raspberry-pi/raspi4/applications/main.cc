@@ -24,9 +24,13 @@ limitations under the License.
 // requirements for entry code (like an app_main function) should specialize
 // this main.cc file in a target-specific subfolder.
 int main(int argc, char* argv[]) {
+
+#ifdef BSP_USING_TFLITE
   setup();
   rt_kprintf("model load successfully!!\n");
    while (true) {
      loop();
    }
+#endif
+  return 0;
 }

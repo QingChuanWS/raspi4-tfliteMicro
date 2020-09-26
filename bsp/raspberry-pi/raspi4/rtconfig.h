@@ -156,6 +156,7 @@
 
 /* samples: kernel and components samples */
 
+#define BSP_USING_TFLITE
 #define BCM2711_SOC
 #define BSP_SUPPORT_FPU
 

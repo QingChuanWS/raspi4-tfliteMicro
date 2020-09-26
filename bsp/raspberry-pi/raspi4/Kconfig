@@ -18,6 +18,11 @@ config PKGS_DIR
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
 
+config BSP_USING_TFLITE
+    bool "Enable Tensorflow Lite Micro"
+    select RT_USING_CPLUSPLUS
+    default n
+
 config BCM2711_SOC
     bool
     select ARCH_ARM_CORTEX_A72
