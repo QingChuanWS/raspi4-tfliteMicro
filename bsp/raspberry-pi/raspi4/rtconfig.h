@@ -156,7 +156,11 @@
 
 /* samples: kernel and components samples */
 
+
+/* Tensorflow Lite Micro */
+
 #define BSP_USING_TFLITE
+#define BSP_USING_TFLITE_EXAMPLE
 #define BCM2711_SOC
 #define BSP_SUPPORT_FPU
 

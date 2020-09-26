@@ -18,10 +18,17 @@ config PKGS_DIR
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
 
-config BSP_USING_TFLITE
-    bool "Enable Tensorflow Lite Micro"
-    select RT_USING_CPLUSPLUS
-    default n
+menu "Tensorflow Lite Micro"
+    config BSP_USING_TFLITE
+        bool "Enable Tensorflow Lite Micro"
+        select RT_USING_CPLUSPLUS
+        default n
+
+    config BSP_USING_TFLITE_EXAMPLE
+        bool "Enable Tensorflow Lite Micro audio example"
+        select BSP_USING_TFLITE
+        default n
+endmenu
 
 config BCM2711_SOC
     bool

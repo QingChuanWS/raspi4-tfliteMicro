@@ -25,7 +25,7 @@ limitations under the License.
 // this main.cc file in a target-specific subfolder.
 int main(int argc, char* argv[]) {
 
-#ifdef BSP_USING_TFLITE
+#ifdef BSP_USING_TFLITE_EXAMPLE
   setup();
   rt_kprintf("model load successfully!!\n");
    while (true) {
