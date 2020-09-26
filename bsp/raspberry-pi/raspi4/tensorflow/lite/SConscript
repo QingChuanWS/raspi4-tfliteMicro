@@ -14,6 +14,6 @@ string_util.cc
 cwd = GetCurrentDir()
 CPPPATH = [cwd, str(Dir('#'))]
 
-group = DefineGroup('lite', src, depend = [''], CPPPATH = CPPPATH)
+group = DefineGroup('lite', src, depend = ['BSP_USING_TFLITE'], CPPPATH = CPPPATH)
 
 Return('group')
