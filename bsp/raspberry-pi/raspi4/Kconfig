@@ -24,10 +24,23 @@ menu "Tensorflow Lite Micro"
         select RT_USING_CPLUSPLUS
         default n
 
-    config BSP_USING_TFLITE_EXAMPLE
-        bool "Enable Tensorflow Lite Micro audio example"
-        select BSP_USING_TFLITE
-        default n
+    if BSP_USING_TFLITE
+        choice
+            prompt "Select Offical Example"
+            
+            config BSP_USING_TFLITE_AUDIO_EXAMPLE
+                bool "Enable Tensorflow Lite Micro audio example"
+                default n
+
+            config BSP_USING_TFLITE_PERSON_EXAMPLE
+                bool "Enable Tensorflow Lite Micro person example"
+                default n
+            
+            config BSP_USING_TFLITE_NO_EXAMPEL
+                bool "NO Tensorflow Lite Micro example"
+                default y
+        endchoice
+    endif
 endmenu
 
 config BCM2711_SOC
