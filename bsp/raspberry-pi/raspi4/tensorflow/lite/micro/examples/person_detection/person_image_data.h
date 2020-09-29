@@ -13,14 +13,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include <rtthread.h>
-#include <rtdevice.h>
-#include <board.h>
+// This data was created from a sample image from with a person in it.
+// Convert original image to simpler format:
+// convert -resize 96x96\! person.PNG person.bmp3
+// Skip the 54 byte bmp3 header and add the reset of the bytes to a C array:
+// xxd -s 54 -i /tmp/person.bmp3 > /tmp/person.cc
 
-// This is the default main used on systems that have the standard C entry
-// point. Other devices (for example FreeRTOS or ESP32) that have different
-// requirements for entry code (like an app_main function) should specialize
-// this main.cc file in a target-specific subfolder.
-int main(int argc, char* argv[]) {
-  return 0;
-}
+#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_IMAGE_DATA_H_
+#define TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_IMAGE_DATA_H_
+
+#include <cstdint>
+
+extern const int g_person_data_size;
+extern const uint8_t g_person_data[];
+
+#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_PERSON_DETECTION_PERSON_IMAGE_DATA_H_
