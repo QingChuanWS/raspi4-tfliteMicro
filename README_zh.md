@@ -1,6 +1,6 @@
 ## 简介
 
-**这份RT-Thread工程是针对 Raspberry Pi 4板子的一份移植，同时本历程搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 目前已经通过了官方的有关测试和实现了官方语音识别demo**
+**这份RT-Thread工程是针对 Raspberry Pi 4板子的一份移植，同时本历程搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 目前已经通过了官方的有关测试和实现了官方语音识别demo以及官方行人检测demo, demo之间的选择可以通过menuconfig来实现**
 
 **关于工程详细内容请见`bsp/raspberry-pi/raspi4/README.md`**
 
