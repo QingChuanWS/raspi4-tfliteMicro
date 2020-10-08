@@ -6,7 +6,7 @@
 
 外设支持上，引入了双频Wi-Fi，蓝牙5.0，千兆网卡，MIPI CSI相机接口，两个USB口，40个扩展帧。
 
-这份RT-Thread BSP是针对 Raspberry Pi 4的一份移植，同时本历程搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 可以实现官方自带的有关测试和历程
+这份RT-Thread BSP是针对 Raspberry Pi 4的一份移植，并搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 同时附带了部分官方历程
 
 
 ## 2. 编译说明
@@ -36,7 +36,7 @@ Select Offical Example中有三个选项:
 ( ) No Tensorflow Lite Micro example
 ```
 
-其中audio example是执行官方携带的语音demo, person example是执行官方携带的行人检测demo, No example则是不集成example文件, 只使用Tensorflow Lite Micro标准框架
+其中`audio example`是执行官方携带的语音demo,` person example`是执行官方携带的行人检测demo, `No example`则是不集成example文件, 只使用`Tensorflow Lite Micro`标准框架
 
 ## 3. 执行
 
@@ -68,7 +68,7 @@ kernel=rtthread.bin
 
 按上面的方法做好SD卡后，插入树莓派4.
 
-如果选择的是audio example, 则通电之后可以在串口上看到如下所示的输出信息：
+如果选择的是`audio example`, 则通电之后可以在串口上看到如下所示的输出信息：
 
 ```text
 heap: 0x000c9350 - 0x040c9350
@@ -87,7 +87,7 @@ heap: 0x000c9350 - 0x040c9350
 
 此时工程执行的是根目录下`Application `中的`audio_main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别简单的yes和no关键字. 
 
-如果选择的是person example, 则通电之后可以在串口上看到如下所示的输出信息：
+如果选择的是`person example`, 则通电之后可以在串口上看到如下所示的输出信息：
 
 ```text
 heap: 0x000c9350 - 0x040c9350
@@ -110,7 +110,7 @@ msh>
 
 此时工程执行的是根目录下`Application `中的`person_main.cc` 中的`main`函数, 工程实现了官方自带行人检测demo可以实现官方自带的行人检测任务
 
-如果选择的是No example, 则通电之后可以在串口上看到如下所示的输出信息：
+如果选择的是`No example`, 则通电之后可以在串口上看到如下所示的输出信息：
 
 ```text
 heap: 0x000c9350 - 0x040c9350
@@ -128,7 +128,7 @@ msh>
 
 `application`: 用于放置用户自定义实现文件
 
-`driver: 目前板级的驱动文件`
+`driver`: 目前板级的驱动文件
 
 `fixedpoint`: `Tensorflow Lite Micro`需要的定点数支持目录
 
