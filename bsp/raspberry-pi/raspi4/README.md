@@ -20,8 +20,23 @@ PLATFORM    = 'gcc'
 EXEC_PATH   = r'/opt/gcc-arm-8.3-2019.03-x86_64-aarch64-elf/bin/'  
 ```
 
-直接进入`bsp\raspberry-pi\raspi4`，输入scons编译即可。
+直接进入`bsp\raspberry-pi\raspi4`，输入scons --menuconfig对工程进行配置。
 
+```
+Tensorflow Lite Micro
+	Enable Tensorflow Lite Micro
+		Select Offical Example(Enable Tensorflow Lite Micro aduio example)
+```
+
+Select Offical Example中有三个选项:
+
+```
+(X) Enable Tensorflow Lite Micro audio example
+( ) Enable Tensorflow Lite Micro person example
+( ) No Tensorflow Lite Micro example
+```
+
+其中audio example是执行官方携带的语音demo, person example是执行官方携带的行人检测demo, No example则是不集成example文件, 只使用Tensorflow Lite Micro标准框架
 
 ## 3. 执行
 
@@ -51,7 +66,9 @@ arm_64bit=1
 kernel=rtthread.bin
 ```
 
-按上面的方法做好SD卡后，插入树莓派4，通电可以在串口上看到如下所示的输出信息：
+按上面的方法做好SD卡后，插入树莓派4.
+
+如果选择的是audio example, 则通电之后可以在串口上看到如下所示的输出信息：
 
 ```text
 heap: 0x000c9350 - 0x040c9350
@@ -68,7 +85,45 @@ heap: 0x000c9350 - 0x040c9350
  ...
 ```
 
-目前工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别简单的yes和no关键字. 编译运行并装载到树莓派板子之后, 可以看到如上图所示的输出
+此时工程执行的是根目录下`Application `中的`audio_main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别简单的yes和no关键字. 
+
+如果选择的是person example, 则通电之后可以在串口上看到如下所示的输出信息：
+
+```text
+heap: 0x000c9350 - 0x040c9350
+
+ \ | /
+- RT -     Thread Operating System
+ / | \     4.0.3 build Apr 16 2020
+ 2006 - 2020 Copyright by rt-thread team
+Testing TestInvoke
+person data.  person score: 188, no person score: 139
+
+no person data.  person score: 117, no person score: 203
+
+Ran successfully
+
+1/1 tests passed
+~~~ALL TESTS PASSED~~~
+msh>
+```
+
+此时工程执行的是根目录下`Application `中的`person_main.cc` 中的`main`函数, 工程实现了官方自带行人检测demo可以实现官方自带的行人检测任务
+
+如果选择的是No example, 则通电之后可以在串口上看到如下所示的输出信息：
+
+```text
+heap: 0x000c9350 - 0x040c9350
+
+ \ | /
+- RT -     Thread Operating System
+ / | \     4.0.3 build Apr 16 2020
+ 2006 - 2020 Copyright by rt-thread team
+msh>
+```
+
+此时工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 此时工程默认不产生任何输出, 需要用户自行设计
+
 ## 4. 目录结构
 
 `application`: 用于放置用户自定义实现文件
@@ -91,7 +146,7 @@ heap: 0x000c9350 - 0x040c9350
 
 ## 6. 联系人信息
 
-维护人：[bernard][5]
+维护人：[bernard][5]  [QingChuanWS][7]
 
 [1]: https://www.rt-thread.org/page/download.html
 [2]: https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
@@ -99,3 +154,5 @@ heap: 0x000c9350 - 0x040c9350
 [4]: https://etcher.io
 [5]: https://github.com/BernardXiong
 [6]:https://tensorflow.google.cn/lite/microcontrollers
+[7]:https://github.com/QingChuanWS/raspi4-tfliteMicro
+

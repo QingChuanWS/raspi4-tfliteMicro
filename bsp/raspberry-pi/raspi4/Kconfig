@@ -37,7 +37,7 @@ menu "Tensorflow Lite Micro"
                 default n
             
             config BSP_USING_TFLITE_NO_EXAMPEL
-                bool "NO Tensorflow Lite Micro example"
+                bool "No Tensorflow Lite Micro example"
                 default y
         endchoice
     endif

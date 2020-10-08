@@ -11,7 +11,7 @@
 
 # Introduction
 
-**This RT-Thread project is a transplant for the Raspberry Pi 4 board. At the same time, this process is equipped with the `Tensorflow Lite Micro` embedded deep learning framework. It has passed the official test and implemented the official speech recognition demo.**
+**This RT-Thread project is a transplant for the Raspberry Pi 4 board. At the same time, this process is equipped with the `Tensorflow Lite Micro` embedded deep learning framework. It has passed the official test and implemented the official speech recognition demo and official person recognition demo, the choice between demos can be operated through menuconfig.**
 
 **For project details, please see `bsp/raspberry-pi/raspi4/README.md`**
 
