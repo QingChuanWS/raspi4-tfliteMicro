@@ -1,8 +1,8 @@
 ## 简介
 
-**这份RT-Thread工程是针对 Raspberry Pi 4板子的一份移植，同时本历程搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 目前已经通过了官方的有关测试和实现了官方语音识别demo以及官方行人检测demo, demo之间的选择可以通过menuconfig来实现**
+#### 这份RT-Thread工程是针对 Raspberry Pi 4板子的一份移植，同时本历程搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 目前已经通过了官方的有关测试和实现了官方语音识别demo以及官方行人检测demo, demo之间的选择可以通过menuconfig来实现
 
-**关于工程详细内容请见`bsp/raspberry-pi/raspi4/README.md`**
+#### 关于工程详细内容请见`bsp/raspberry-pi/raspi4/README.md`
 
 RT-Thread诞生于2006年，是一款以开源、中立、社区化发展起来的物联网操作系统。
 RT-Thread主要采用 C 语言编写，浅显易懂，且具有方便移植的特性（可快速移植到多种主流 MCU 及模组芯片上）。RT-Thread把面向对象的设计方法应用到实时系统设计中，使得代码风格优雅、架构清晰、系统模块化并且可裁剪性非常好。
