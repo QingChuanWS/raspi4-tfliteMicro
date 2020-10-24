@@ -11,11 +11,6 @@
 
 # Introduction
 
-####  This RT-Thread project is a transplant for the Raspberry Pi 4 board. At the same time, this process is equipped with the `Tensorflow Lite Micro` embedded deep learning framework. It has passed the official test and implemented the official speech recognition demo and official person recognition demo, the choice between demos can be operated through menuconfig.
-
-#### For project details, please see `bsp/raspberry-pi/raspi4/README.md`
-
-
 RT-Thread was born in 2006, it is an open source, neutral, and community-based real-time operating system (RTOS). 
 
 RT-Thread is mainly written in C language, easy to understand and easy to port(can be quickly port to a wide range of mainstream MCUs and module chips). It applies object-oriented programming methods to real-time system design, making the code elegant, structured, modular, and very tailorable. 
