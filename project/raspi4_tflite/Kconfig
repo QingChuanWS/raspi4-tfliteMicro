@@ -19,25 +19,37 @@ source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
 
 menu "Tensorflow Lite Micro"
-    config BSP_USING_TFLITE
+    config BSP_USING_TENSORFLOWLITEMICRO
         bool "Enable Tensorflow Lite Micro"
         select RT_USING_CPLUSPLUS
         default n
 
-    if BSP_USING_TFLITE
+    if BSP_USING_TENSORFLOWLITEMICRO
         choice
             prompt "Select Offical Example"
             
-            config BSP_USING_TFLITE_AUDIO_EXAMPLE
+            config BSP_USING_TENSORFLOWLITEMICRO_AUDIO_EXAMPLE
                 bool "Enable Tensorflow Lite Micro audio example"
                 default n
 
-            config BSP_USING_TFLITE_PERSON_EXAMPLE
+            config BSP_USING_TENSORFLOWLITEMICRO_PERSON_EXAMPLE
                 bool "Enable Tensorflow Lite Micro person example"
                 default n
             
-            config BSP_USING_TFLITE_NO_EXAMPEL
+            config BSP_USING_TENSORFLOWLITEMICRO_NO_EXAMPEL
                 bool "No Tensorflow Lite Micro example"
+                default y
+        endchoice
+
+        choice
+            prompt "Select Tensorflow Lite Operations Type"
+
+            config BSP_USING_TENSORFLOWLITEMICRO_REFERENCE
+                bool "Using Tensorflow Lite reference operations"
+                default n
+
+            config BSP_USING_TENSORFLOWLITEMICRO_CMSISNN
+                bool "Using Tensorflow Lite CMSIS NN operations"
                 default y
         endchoice
     endif
