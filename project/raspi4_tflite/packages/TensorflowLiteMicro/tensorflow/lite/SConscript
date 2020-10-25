@@ -13,9 +13,6 @@ string_util.cc
 if GetDepend('PKG_USING_TENSORFLOWLITEMICRO_AUDIO_EXAMPLE'):
     src += Glob('micro/examples/micro_speech/*.cc') + Glob('micro/examples/micro_speech/micro_features/*.cc') 
 
-if GetDepend('PKG_USING_TENSORFLOWLITEMICRO_PERSON_EXAMPLE'):
-    src += Glob('micro/examples/person_detection/*.cc')
-
 if GetDepend('PKG_USING_TENSORFLOWLITEMICRO_REFERENCE'):
     src += Glob('micro/kernels/*.cc') 
 

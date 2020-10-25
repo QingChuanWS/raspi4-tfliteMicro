@@ -6,8 +6,6 @@ src = []
 
 if GetDepend(['PKG_USING_TENSORFLOWLITEMICRO_AUDIO_EXAMPLE']):
     src += Split('audio_main.cc') 
-elif GetDepend(['PKG_USING_TENSORFLOWLITEMICRO_PERSON_EXAMPLE']):
-    src += Split('person_main.cc') 
 else:
     src += Split('main.cc')
 
