@@ -18,31 +18,6 @@ config PKGS_DIR
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
 
-menu "Tensorflow Lite Micro"
-    config BSP_USING_TFLITE
-        bool "Enable Tensorflow Lite Micro"
-        select RT_USING_CPLUSPLUS
-        default n
-
-    if BSP_USING_TFLITE
-        choice
-            prompt "Select Offical Example"
-            
-            config BSP_USING_TFLITE_AUDIO_EXAMPLE
-                bool "Enable Tensorflow Lite Micro audio example"
-                default n
-
-            config BSP_USING_TFLITE_PERSON_EXAMPLE
-                bool "Enable Tensorflow Lite Micro person example"
-                default n
-            
-            config BSP_USING_TFLITE_NO_EXAMPEL
-                bool "No Tensorflow Lite Micro example"
-                default y
-        endchoice
-    endif
-endmenu
-
 config BCM2711_SOC
     bool
     select ARCH_ARM_CORTEX_A72

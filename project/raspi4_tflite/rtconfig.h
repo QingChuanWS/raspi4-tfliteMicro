@@ -155,9 +155,10 @@
 
 /* samples: kernel and components samples */
 
-
-/* Tensorflow Lite Micro */
-
+#define PKG_USING_TENSORFLOWLITEMICRO
+#define PKG_USING_TENSORFLOWLITEMICRO_LATEST_VERSION
+#define PKG_USING_TENSORFLOWLITEMICRO_PERSON_EXAMPLE
+#define PKG_USING_TENSORFLOWLITEMICRO_CMSISNN
 #define BCM2711_SOC
 
 /* Hardware Drivers Config */
