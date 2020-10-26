@@ -16,7 +16,7 @@ limitations under the License.
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <board.h>
-#include "packages/TensorflowLiteMicro/tensorflow/lite/micro/examples/micro_speech/main_functions.h"
+#include "tflite/micro/examples/micro_speech/main_functions.h"
 
 // This is the default main used on systems that have the standard C entry
 // point. Other devices (for example FreeRTOS or ESP32) that have different

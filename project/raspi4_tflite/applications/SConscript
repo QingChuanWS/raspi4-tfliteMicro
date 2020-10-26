@@ -1,7 +1,17 @@
 from building import *
 
 cwd     = GetCurrentDir()
-CPPPATH = [cwd, str(Dir('#'))]
+cwd = GetCurrentDir()
+root =  str(Dir('#'))
+packages = os.path.join(root, 'packages')
+file_list = os.listdir(packages)
+for f in file_list:
+    if(f.split('-')[0] == 'TensorflowLiteMicro'):
+        tflite = os.path.join(packages, f)
+        break
+
+CPPPATH = [cwd, tflite]
+
 src = []
 
 if GetDepend(['PKG_USING_TENSORFLOWLITEMICRO_AUDIO_EXAMPLE']):
@@ -9,6 +19,6 @@ if GetDepend(['PKG_USING_TENSORFLOWLITEMICRO_AUDIO_EXAMPLE']):
 else:
     src += Split('main.cc')
 
-group = DefineGroup('application', src, depend = [''], CPPPATH = CPPPATH)
+group = DefineGroup('lite', src, depend = [''], CPPPATH = CPPPATH)
 
 Return('group')
