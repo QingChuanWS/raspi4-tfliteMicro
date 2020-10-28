@@ -1,0 +1,10 @@
+import rtconfig
+from building import *
+
+cwd  = GetCurrentDir()
+path = [cwd]
+src  = Glob('*.cc')
+
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = path)
+
+Return('group')

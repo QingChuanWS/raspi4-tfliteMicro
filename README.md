@@ -1,4 +1,4 @@
-# Raspberry PI 4板级支持包说明
+# Raspberry PI 4 SDK
 
 ## 1. 简介
 
@@ -6,41 +6,75 @@
 
 外设支持上，引入了双频Wi-Fi，蓝牙5.0，千兆网卡，MIPI CSI相机接口，两个USB口，40个扩展帧。
 
-这份RT-Thread BSP是针对 Raspberry Pi 4的一份移植，并搭载了`Tensorflow Lite Micro`嵌入式深度学习框架, 同时附带了部分官方历程
+这份 SDK 包含 RT-Thread 团队针对 Raspberry Pi 4 系统搭建的板级支持包 , 以及 Tensorflow Lite Micro 嵌入式深度学习推理框架, 用来实现在嵌入式平台中部署深度学习任务.
 
+![raspi1](documents/figures/raspipi4.png)
 
-## 2. 编译说明
+## 2. 目录结构
 
-Linux下推荐使用[gcc工具][2]。Linux版本下gcc版本可采用`gcc-arm-8.3-2019.03-x86_64-aarch64-elf`。
+```
+$ raspi4-tfliteMicro
+├── documents
+│   ├── figures
+│   └── TFLu
+├── project
+│   └── raspi_pi_audio
+├── README.md
+└── rt-thread
+```
 
-将工具链解压到指定目录,并修改当前bsp下的`EXEC_PATH`为自定义gcc目录。
+- documents
+  图片和Tensorflow Lite Micro软件包的有关文档
+- projects
+  示例工程文件夹，包含Tensorflow Lite Micro的语音示例
+- rt-thread
+  rt-thread 源码
+
+## 3. 编译说明
+
+Linux下推荐使用[gcc工具][2]。Linux版本下gcc版本可采用`gcc-arm-8.3-2019.03-x86_64-aarch64-elf`工具。此处以raspi_pi_audio工程为例. 
+
+- 将工具链解压到如下的指定目录, 并在project文件夹下选择想要执行的示例文件夹,  修改`raspi_pi_audio/rtconfig.py` 的`EXEC_PATH`为自定义gcc目录, 如下例所示.
 
 ```
 PLATFORM    = 'gcc'
 EXEC_PATH   = r'/opt/gcc-arm-8.3-2019.03-x86_64-aarch64-elf/bin/'  
 ```
 
-直接进入`bsp\raspberry-pi\raspi4`，输入scons --menuconfig对工程进行配置。
+- 以linux系统为例, 终端进入`path_of_SDK/project/raspi_pi_audio/`目录，输入 scons --menuconfig 对工程进行配置。
 
 ```
-Tensorflow Lite Micro
-	Enable Tensorflow Lite Micro
-		Select Offical Example(Enable Tensorflow Lite Micro aduio example)
+RT-Thread online packages  --->
+	miscellaneous packages  --->
+		Tensorflow Lite Micro: a lightweight deep learning end-test inference framework for RT-Thread operating s
+			Version (latest)  --->  
+			Select Offical Example (Enable Tensorflow Lite Micro audio example)  --->      
+            Select Tensorflow Lite Operations Type (Using Tensorflow Lite reference operations)  ---> 
 ```
 
 Select Offical Example中有三个选项:
 
 ```
-(X) Enable Tensorflow Lite Micro audio example
-( ) Enable Tensorflow Lite Micro person example
-( ) No Tensorflow Lite Micro example
+(X) Enable Tensorflow Lite Micro audio example 
+( ) No Tensorflow Lite Micro Example 
 ```
 
-其中`audio example`是执行官方携带的语音demo,` person example`是执行官方携带的行人检测demo, `No example`则是不集成example文件, 只使用`Tensorflow Lite Micro`标准框架
+注 : audio example是执行官方携带的语音示例, No example则是不集成example文件, 只使用Tensorflow Lite Micro标准框架. 
 
-## 3. 执行
+Select Tensorflow Lite Operations Type中有两个选项:
 
-### 3.1 下载**Raspberry Pi Imager**，生成可以运行的raspbian SD卡
+```
+(X) Using Tensorflow Lite reference operations
+( ) Using Tensorflow Lite CMSIS NN operations 
+```
+
+注 : reference operation是应用TFLMicro的通用算子(算子与平台隔离,可移植性好),  CMSIS NN operations是应用针对ARM平台进行特定优化的算子(主要针对Cortex M4内核以上的平台, 对于特定平台有特定加速).
+
+- 在终端输入scons进行编译, 即可生成携带TFLu的rtthtread.bin和rtthread.elf
+
+## 4. 执行
+
+### 4.1 下载**Raspberry Pi Imager**，生成可以运行的raspbian SD卡
 
 首先下载镜像
 
@@ -48,15 +82,15 @@ Select Offical Example中有三个选项:
 * [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager.exe)
 * [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager.dmg)
 
-### 3.2 准备好串口线
+### 4.2 准备好串口线
 
 目前版本是使用raspi4的 GPIO 14, GPIO 15来作路口输出，连线情况如下图所示：
 
-![raspi2](../raspi3-32/figures/raspberrypi-console.png)
+![raspi2](documents/figures/raspberrypi-console.png)
 
 串口参数： 115200 8N1 ，硬件和软件流控为关。
 
-### 3.3 程序下载
+### 4.3 程序下载
 
 当编译生成了rtthread.bin文件后，我们可以将该文件放到sd卡上，并修改sd卡中的`config.txt`文件如下：
 
@@ -68,7 +102,7 @@ kernel=rtthread.bin
 
 按上面的方法做好SD卡后，插入树莓派4.
 
-如果选择的是`audio example`, 则通电之后可以在串口上看到如下所示的输出信息：
+如果在 menuconfig 中选择的是 audio example, 则在上电之后可以在串口上看到如下所示的输出信息：
 
 ```text
 heap: 0x000c9350 - 0x040c9350
@@ -85,32 +119,9 @@ heap: 0x000c9350 - 0x040c9350
  ...
 ```
 
-此时工程执行的是根目录下`Application `中的`audio_main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别简单的yes和no关键字. 
+此时工程执行的是 raspi_pi_audio 目录下 applications 中的`audio_main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别示例语音文件中的yes和no关键字. 
 
-如果选择的是`person example`, 则通电之后可以在串口上看到如下所示的输出信息：
-
-```text
-heap: 0x000c9350 - 0x040c9350
-
- \ | /
-- RT -     Thread Operating System
- / | \     4.0.3 build Apr 16 2020
- 2006 - 2020 Copyright by rt-thread team
-Testing TestInvoke
-person data.  person score: 188, no person score: 139
-
-no person data.  person score: 117, no person score: 203
-
-Ran successfully
-
-1/1 tests passed
-~~~ALL TESTS PASSED~~~
-msh>
-```
-
-此时工程执行的是根目录下`Application `中的`person_main.cc` 中的`main`函数, 工程实现了官方自带行人检测demo可以实现官方自带的行人检测任务
-
-如果选择的是`No example`, 则通电之后可以在串口上看到如下所示的输出信息：
+如果在 menuconfig 中选择的是 No example, 则在上电之后可以在串口上看到如下所示的输出信息：
 
 ```text
 heap: 0x000c9350 - 0x040c9350
@@ -124,21 +135,12 @@ msh>
 
 此时工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 此时工程默认不产生任何输出, 需要用户自行设计
 
-## 4. 目录结构
+## 5. 注意事项
 
-`application`: 用于放置用户自定义实现文件
+- 目前CMSIS NN算子还处在测试阶段, 可能存在问题. 
+- 目前的CMSIS NN算子优化主要针对ARM Cortex M4以上的内核进行计算优化, 对应Cortex A7的优化还有待确认
 
-`driver`: 目前板级的驱动文件
-
-`fixedpoint`: `Tensorflow Lite Micro`需要的定点数支持目录
-
-`flatbuffers`: 为`Tensorflow Lite Micro`提供`tflite`模型提供解析支持
-
-`ruy`:  为`Tensorflow Lite Micro`提供矩阵乘法的加速支持
-
-`tensorflow`: `Tensorflow Lite Micro`的主体实现
-
-## 5. 支持情况
+## 6. 支持情况
 
 | 驱动 | 支持情况  |  备注  |
 | ------ | ----  | :------:  |
