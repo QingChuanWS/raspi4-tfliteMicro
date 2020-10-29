@@ -2,13 +2,25 @@
 
 ## 1. 简介
 
-树莓派4B的核心处理器为博通BCM2711（四核1.5GHz，Cortex A72架构，树莓派3是四核A53）。LPDDR4内存，由5V/3A USB-C供电或GPIO 5V。
-
-外设支持上，引入了双频Wi-Fi，蓝牙5.0，千兆网卡，MIPI CSI相机接口，两个USB口，40个扩展帧。
-
 这份 SDK 包含 RT-Thread 团队针对 Raspberry Pi 4 系统搭建的板级支持包 , 以及 Tensorflow Lite Micro 嵌入式深度学习推理框架, 用来实现在嵌入式平台中部署深度学习任务.
 
 ![raspi1](documents/figures/raspipi4.png)
+
+目前Raspberry Pi 4对应的硬件特性：
+
+| 硬件    | 描述                            |
+| ------- | ------------------------------- |
+| CPU     | quad-core 64-bit ARM Cortex-A72 |
+| 主频    | 1.5 GHz                         |
+| GPU     | VideoCore IV                    |
+| GPU频率 | 400MHz                          |
+| Memory  | 1GB, 2GB, 4GB LPDDR4 SDRAM      |
+
+外设支持上，引入了双频Wi-Fi，蓝牙5.0，千兆网卡，MIPI CSI相机接口，两个USB口，40个扩展帧。
+
+硬件引脚分布情况:
+
+![raspipin](documents/figures/raspipin.png)
 
 ## 2. 目录结构
 
