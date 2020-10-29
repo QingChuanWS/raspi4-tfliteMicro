@@ -25,8 +25,14 @@ $ raspi4-tfliteMicro
 
 - documents
   图片和Tensorflow Lite Micro软件包的有关文档
+  
 - projects
-  示例工程文件夹，包含Tensorflow Lite Micro的语音示例
+  示例工程文件夹，目前包含Tensorflow Lite Micro的语音示例
+  
+- READM.md
+  
+  工程说明README.md文档
+  
 - rt-thread
   rt-thread 源码
 
@@ -68,7 +74,7 @@ Select Tensorflow Lite Operations Type中有两个选项:
 ( ) Using Tensorflow Lite CMSIS NN operations 
 ```
 
-注 : reference operation是应用TFLMicro的通用算子(算子与平台隔离,可移植性好),  CMSIS NN operations是应用针对ARM平台进行特定优化的算子(主要针对Cortex M4内核以上的平台, 对于特定平台有特定加速).
+注 : reference operation是应用TFLMicro的通用算子(算子与平台隔离,可移植性好),  CMSIS NN operations是应用针对ARM平台进行特定优化的算子(主要针对Cortex M4内核以上的平台, 对该平台有特定加速优化).
 
 - 在终端输入scons进行编译, 即可生成携带TFLu的rtthtread.bin和rtthread.elf
 
@@ -137,8 +143,8 @@ msh>
 
 ## 5. 注意事项
 
+- 目前的CMSIS NN算子优化主要针对ARM Cortex M4以上的内核进行计算优化, 对应Cortex A7内核暂时还无法实现优化 , 建议使用reference算子
 - 目前CMSIS NN算子还处在测试阶段, 可能存在问题. 
-- 目前的CMSIS NN算子优化主要针对ARM Cortex M4以上的内核进行计算优化, 对应Cortex A7的优化还有待确认
 
 ## 6. 支持情况
 
