@@ -2,7 +2,7 @@
 
 ## 1. 简介
 
-这份 SDK 包含 RT-Thread 团队针对 Raspberry Pi 4 系统搭建的板级支持包 , 以及 Tensorflow Lite Micro 嵌入式深度学习推理框架, 用来实现在嵌入式平台中部署深度学习任务.
+这份 SDK 包含 RT-Thread 团队针对 Raspberry Pi 4 系统搭建的板级支持包(BSP) , 以及 Google 的 Tensorflow Lite Micro 嵌入式深度学习推理框架. 基于 SDK 的功能, 可以实现在Raspberry Pi 4平台中部署基于Tensorflow Lite框架训练的深度学习任务.
 
 ![raspi1](documents/figures/raspipi4.png)
 
@@ -30,7 +30,7 @@ $ raspi4-tfliteMicro
 │   ├── figures
 │   └── TFLu
 ├── project
-│   └── raspi_pi_audio
+│   └── raspi_pi_audio --> 内含基于TFLu的语音识别示例
 ├── README.md
 └── rt-thread
 ```
@@ -42,7 +42,6 @@ $ raspi4-tfliteMicro
   示例工程文件夹，目前包含Tensorflow Lite Micro的语音示例
   
 - READM.md
-  
   工程说明README.md文档
   
 - rt-thread
@@ -155,8 +154,9 @@ msh>
 
 ## 5. 注意事项
 
-- 目前的CMSIS NN算子优化主要针对ARM Cortex M4以上的内核进行计算优化, 对应Cortex A7内核暂时还无法实现优化 , 建议使用reference算子
+- 目前的CMSIS库中对于TFLu的算子优化有部分集中在Cortex M的内核中, 对应的Cortex A内核可能无法实现优化, 此时可以采用reference算子
 - 目前CMSIS NN算子还处在测试阶段, 可能存在问题. 
+- 本SDK对应了一个与硬件平台隔离的软件包TensorFlow Lite Micro, 详细请见仓库链接: https://github.com/QingChuanWS/TensorflowLiteMicro
 
 ## 6. 支持情况
 
