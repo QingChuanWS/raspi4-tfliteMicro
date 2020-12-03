@@ -2,19 +2,21 @@
 
 ## 1. 简介
 
-这份 SDK 包含 RT-Thread 团队针对 Raspberry Pi 4 系统搭建的板级支持包(BSP) , 以及 Google 的 Tensorflow Lite Micro 嵌入式深度学习推理框架. 基于 SDK 的功能, 可以实现在Raspberry Pi 4平台中部署基于Tensorflow Lite框架训练的深度学习任务.
+这份 SDK 主要包含 RT-Thread 团队针对 Raspberry Pi 4 系统搭建的板级支持包(BSP) , 以及 Google Tensorflow Lite Micro 嵌入式深度学习推理框架. 基于 SDK 的功能, 可以实现在Raspberry Pi 4平台中部署基于Tensorflow Lite框架训练的深度学习任务.
+
+注: 本 SDK 对应了一个 RTT 软件包 TensorFlowLiteMicro 已经上线, 其与硬件平台隔离的, 具备良好的可移植性, 详细请见仓库链接: https://github.com/QingChuanWS/TensorflowLiteMicro
 
 ![raspi1](documents/figures/raspipi4.png)
 
 目前Raspberry Pi 4对应的硬件特性：
 
-| 硬件    | 描述                            |
-| ------- | ------------------------------- |
-| CPU     | quad-core 64-bit ARM Cortex-A72 |
-| 主频    | 1.5 GHz                         |
-| GPU     | VideoCore IV                    |
-| GPU频率 | 400MHz                          |
-| Memory  | 1GB, 2GB, 4GB LPDDR4 SDRAM      |
+| 硬件    | 描述                                |
+| ------- | ----------------------------------- |
+| CPU     | quad-core 64-bit ARM Cortex-A72 4核 |
+| 主频    | 1.5 GHz                             |
+| GPU     | VideoCore IV                        |
+| GPU频率 | 400MHz                              |
+| Memory  | 1GB, 2GB, 4GB LPDDR4 SDRAM          |
 
 外设支持上，引入了双频Wi-Fi，蓝牙5.0，千兆网卡，MIPI CSI相机接口，两个USB口，40个扩展帧。
 
@@ -136,7 +138,7 @@ heap: 0x000c9350 - 0x040c9350
  ...
 ```
 
-此时工程执行的是 raspi_pi_audio 目录下 applications 中的`audio_main.cc` 中的`main`函数, 工程实现了官方自带语音模型, 识别示例语音文件中的yes和no关键字. 
+此时工程执行的是 raspi_pi_audio 目录下 applications 中的`audio_main.cc` 中的`main`函数, 实现官方自带语音模型, 识别示例语音文件中的yes和no关键字. 
 
 如果在 menuconfig 中选择的是 No example, 则在上电之后可以在串口上看到如下所示的输出信息：
 
@@ -150,13 +152,12 @@ heap: 0x000c9350 - 0x040c9350
 msh>
 ```
 
-此时工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 此时工程默认不产生任何输出, 需要用户自行设计
+此时工程执行的是根目录下`Application `中的`main.cc` 中的`main`函数, 此时工程默认不产生任何输出, 需要用户自行设计有关的模型
 
 ## 5. 注意事项
 
 - 目前的CMSIS库中对于TFLu的算子优化有部分集中在Cortex M的内核中, 对应的Cortex A内核可能无法实现优化, 此时可以采用reference算子
 - 目前CMSIS NN算子还处在测试阶段, 可能存在问题. 
-- 本SDK对应了一个与硬件平台隔离的软件包TensorFlow Lite Micro, 详细请见仓库链接: https://github.com/QingChuanWS/TensorflowLiteMicro
 
 ## 6. 支持情况
 
